@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Department of Information Technology | GEC Idukki</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+  }
+    .moving-banner {
+    width: 100%;
+    overflow: hidden;
+    background: #f7d23a;
+    border-bottom: 2px solid #093e6f;
+    color: #093e6f;
+    font-weight: bold;
+    font-size: 1.12em;;
+    padding: 9px 0;
+    position: relative;
+  }
+  .moving-banner span {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 12s linear infinite;
+  }
+  @keyframes scroll-left {
+    0% { transform: translateX(100%);}
+    100% { transform: translateX(-100%);}
+  }
+
+  .header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #093e6f;
+    padding: 16px 0 10px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  }
+  .header-content {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+  }
+  .header-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin: 0 25px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 5px;
+  }
+  @media (max-width:600px) {
+    .header-logo {
+      width: 42px;
+      height: 42px;
+      margin: 0 7px;
+    }
+  }
+  .container {
+    max-width: 900px;
+    margin: 24px auto;
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  
+  .tabs {
+    display: flex;
+    border-bottom: 2px solid #eee;
+    flex-wrap: wrap;
+  }
+  .tab-label {
+    flex: 1;
+    padding: 14px;
+    text-align: center;
+    background: #f2f2f2;
+    color: #093e6f;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-right: 1px solid #eee;
+    font-weight: 600;
+    box-sizing: border-box;
+    border-radius: 5%;
+  }
+  .tab-label:hover {
+  background: #0b4b8a;
+  color: #fff;
+}
+  .tab-label:last-child {
+    border-right: none;
+  }
+  input[type="radio"] {
+    display: none;
+  }
+  input[type="radio"]:checked + label {
+    background: #093e6f;
+    color: #fff;
+  }
+  .tab-content {
+    display: none;
+    padding: 20px 8px 0 8px;
+  }
+  #tab1:checked ~ #content1,
+  #tab2:checked ~ #content2,
+  #tab3:checked ~ #content3,
+  #tab4:checked ~ #content4,
+  #tab5:checked ~ #content5,
+  #tab6:checked ~ #content6 {
+    display: block;
+  }
+  .overview-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .overview-image {
+    flex: 1 1 220px;
+    max-width: 260px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(9,62,111,0.08);
+    margin-right: 24px;
+  }
+  .overview-text {
+    flex: 2 1 320px;
+    background: #e9f1fa;
+    padding: 18px;
+    border-radius: 10px;
+    color: #26528e;
+    font-size: 1.07em;
+    box-shadow: 0 2px 6px rgba(9,62,111,0.05);
+  }
+  .overview-title {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #093e6f;
+    margin-bottom: 7px;
+  }
+  /* Center image above text only for first overview block */
+  .overview-block:first-child {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .overview-block:first-child .overview-image {
+    margin: 0 0 16px 0;
+    max-width: 320px;
+    width: 100%;
+  }
+  .overview-block:first-child .overview-text {
+    flex: none;
+  }
+  @media (max-width:700px) {
+    .overview-block {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .overview-image {
+      margin: 0 auto 14px auto;
+      width: 100%;
+      max-width: 260px;
+    }
+    .overview-text {
+      width: 100%;
+    }
+  }
+  .staff {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .staff-member {
+    background: #f7f7fa;
+    border-radius: 6px;
+    padding: 12px;
+    flex: 1;
+    min-width: 200px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .staff-member img {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    margin: 0 auto 8px auto;
+    display: block;
+  }
+  .map-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  footer {
+    background: #093e6f;
+    color: #fff;
+    text-align: center;
+    padding: 16px 0;
+    margin-top: 32px;
+  }
+  @media (max-width:600px) {
+    .container {
+      padding: 10px;
+    }
+    .staff {
+      flex-direction: column;
+    }
+    .tabs {
+      flex-direction: column;
+    }
+    .tab-label {
+      border-right: none;
+      border-bottom: 1px solid #eee;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="moving-banner">
+  <span>
+    ✯ Admission Started 2025-29✯ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ✯New BTech Course On Robotics and Artificial Intelligence✯
+  </span>
+</div>
+
+
+  <div class="header-flex">
+    <img src="gecii_new.jpg" alt="Left Logo" class="header-logo" />
+    <div class="header-content">
+      <h1 style="margin-bottom: 5px;">Department of Information Technology</h1>
+      <p style="margin-top: 0;">Government Engineering College Idukki</p>
+    </div>
+    <img src="gecii.jpg" alt="Right Logo" class="header-logo" />
+  </div>
+
+
+  <div class="container">
+    <!-- Tab Controls -->
+    <input type="radio" id="tab1" name="tab-group" checked />
+    <label class="tab-label" for="tab1">Overview</label>
+
+
+    <input type="radio" id="tab2" name="tab-group" />
+    <label class="tab-label" for="tab2">Vision and Mission</label>
+
+
+    <input type="radio" id="tab3" name="tab-group" />
+    <label class="tab-label" for="tab3">PSOs and PEOs</label>
+
+
+    <input type="radio" id="tab4" name="tab-group" />
+    <label class="tab-label" for="tab4">Faculty</label>
+
+
+    <input type="radio" id="tab5" name="tab-group" />
+    <label class="tab-label" for="tab5">Infrastructure</label>
+
+
+    <input type="radio" id="tab6" name="tab-group" />
+    <label class="tab-label" for="tab6">Contact</label>
+
+
+    <!-- Overview Content -->
+    <div class="tab-content" id="content1">
+      <div class="overview-block">
+        <img src="geci_photo.jpg" alt="Government Engineering College Idukki" class="overview-image" />
+        <div class="overview-text">
+          <span class="overview-title">Government Engineering College Idukki</span>
+          <p>
+            Government Engineering College Idukki (GECI) is a premier institution established in 2000,
+            located amid the scenic hills of Painavu, Idukki. The college is affiliated to the APJ Abdul
+            Kalam Technological University and offers various undergraduate and postgraduate programs
+            in engineering. GECI is renowned for its commitment to academic excellence, vibrant campus,
+            experienced faculty, modern infrastructure, and student-centric initiatives.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="overview-block">
+        <img src="infotechz.jpg" alt="Department of Information Technology" class="overview-image" />
+        <div class="overview-text">
+          <span class="overview-title">Department of Information Technology</span>
+          <p>
+            Department of Information Technology at Government Engineering College, Idukki was established in
+            the academic year 2000. The faculties of our department are well qualified and have rich knowledge
+            in their subjects. Highly committed faculty members are keen on encouraging students to involve
+            in various co-curricular and extra-curricular activities along with their academics. Also the
+            department has a highly advanced infrastructure including high speed internet facilities, class rooms
+            equipped with LCD projectors and digital podiums. The department labs are equipped with state of art
+            of learning tools, advanced computing infrastructure with world-class software environment and
+            development tools which satisfy the benchmark in high end IT education. It also conducts short-term
+            training programs for both the staff and students for updating them with the latest technological trends.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="overview-block">
+        <img src="infotech.jpg" alt="Department of Computer Science And Engineering" class="overview-image" />
+        <div class="overview-text">
+          <span class="overview-title">Department of Computer Science And Engineering</span>
+          <p>
+            Department of CSE started functioning in the year 2000. The department has a highly committed faculty
+            which is keen on encouraging students to involve in various co-curricular and extra-curricular activities
+            along with their academics. Also the department has a highly advanced infrastructure including high speed internet
+            facilities, class rooms equipped with LCD projectors and interactive boards and well equipped software and hardware labs.
+            It organizes, on a regular basis, supplementary program for students which include paper presentations,
+            technical seminar and quizzes. It also conducts short-term training program for both the staff and students for
+            updating them with the latest technological trends.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="overview-block">
+        <img src="ece.jpeg" alt="Department Of Electronics And Communication Engineering" class="overview-image" />
+        <div class="overview-text">
+          <span class="overview-title">Department Of Electronics And Communication Engineering</span>
+          <p>
+            The department has been in existence since the beginning of the institution in the year 2000,
+            and offers B. Tech in Electronics & Communication Engineering (NBA accredited) and M. Tech
+            in VLSI & Embedded Systems. The department envisions to evolve as a centre of excellence in
+            Electronics and Communication Engineering, moulding professionals with innovative thinking,
+            social commitment and research attitude. The following programs in the department have been
+            approved by All India Council for Technical Education (AICTE).
+          </p>
+        </div>
+      </div>
+
+
+      <div class="overview-block">
+        <img src="eee.jpeg" alt="Department of Electrical and Electronics Engineering" class="overview-image" />
+        <div class="overview-text">
+          <span class="overview-title">Department of Electrical and Electronics Engineering</span>
+          <p>
+            The department of Electrical and Electronics Engineering started functioning right from the beginning
+            of Govt. Engineering college, Idukki, in the year 2000. The four year B-Tech course admits sixty students each year.
+            Six numbers of lateral entry students are also admitted in the third semester. The course is focused on developing
+            quality engineers in the field of Electrical and Electronics Engineering for the benefit of the society. The Department also
+            offers PG program in Power Electronics & Control which started functioning from the year 2011. The department has well
+            equipped laboratories namely Electrical Machine lab, Power Electronics and System lab, Electronic Circuit and Digital lab,
+            Software lab and Electrical Work shop. Experienced and competent teachers & technical staff add to the strength of the department.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="overview-block">
+        <img src="mechanical.jpg" alt="Department of Mechanical Engineering" class="overview-image" />
+        <div class="overview-text">
+          <span class="overview-title">Department of Mechanical Engineering</span>
+          <p>
+            The Department of Mechanical Engineering at Government Engineering College (GEC) Idukki is a relatively young and dynamic
+            department, established in the year 2013. Despite its relatively short history, the department has already established a reputation
+            for producing highly skilled and knowledgeable mechanical engineers, with the first batch of graduates passing out in 2017. The
+            department is committed to providing its students with the technical expertise and social commitment necessary to succeed in their
+            careers and to make a positive impact on society. To achieve this, the department has dedicated, experienced and well-qualified
+            professors and technical staff, who work together towards providing high-quality education. The department has 10 well-equipped
+            laboratories and workshops to provide students with hands-on experience in the latest engineering techniques and practices.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Vision and Mission Content -->
+    <div class="tab-content" id="content2">
+      <h2>Vision</h2>
+      <p>
+        To be a centre of excellence in the field of Information Technology which nurtures young minds through technological adaptation,
+        research, innovation and entrepreneurial skills complying to the needs of society and industry.
+      </p>
+      <h2>Mission</h2>
+      <ul>
+        <li>Imparting career oriented professional education to students through effective delivery of the curriculum.</li>
+        <li>Establishing effective adaptation of cutting edge technologies through industry collaborations and mentoring.</li>
+        <li>Empowering individuals to be socially responsible by inculcating critical thinking, innovation and ethical values.</li>
+      </ul>
+    </div>
+
+
+    <!-- PSOs and PEOs Content -->
+    <div class="tab-content" id="content3">
+      <h2>Program Specific Outcomes (PSOs)</h2>
+      <ul>
+        <li>Problem Solving: Apply algorithmic techniques to provide hardware & software solutions for multi-disciplinary problems.</li>
+        <li>Domain Expertise: Apply in-demand networking concepts and hands-on experience to design, configure and secure computer networks.</li>
+        <li>Adaptability: Apply standard practices to design, develop and deploy data driven solutions through emerging cross platform technologies that enhance employability skills.</li>
+      </ul>
+      <h2>Program Educational Objectives (PEOs)</h2>
+      <ul>
+        <li>Employability: Execute engineering knowledge in the field of Information technology leveraging the art of self-learning, management capabilities and excellent communication skills to succeed in their career.</li>
+        <li>Higher Studies and Research: Provide technical and research contributions towards the advancement of computing and network-based technologies.</li>
+        <li>Entrepreneurship: Develop ingenious solutions to meet societal needs through creative thinking, leadership skills and ethical responsibilities to create a career as an entrepreneur.</li>
+      </ul>
+    </div>
+
+
+    <!-- Faculty Content -->
+    <div class="tab-content" id="content4">
+      <h2>Faculty</h2>
+      <div class="staff">
+        <div class="staff-member">
+          <img src="vijayanand.jpg" alt="Dr.Vijayanand K S" />
+          <strong>Dr.Vijayanand K S</strong><br />
+          Head of Department<br />
+          <a href="mailto:vijayanand.ks@gecidukki.ac.in">vijayanand.ks@gecidukki.ac.in</a>
+        </div>
+        <div class="staff-member">
+          <img src="praveen.jpg" alt="Prof . Praveen A N" />
+          <strong>Prof . Praveen A N</strong><br />
+          Assistant Professor<br />
+          <a href="mailto:praveenan@gecidukki.ac.in">praveenan@gecidukki.ac.in</a>
+        </div>
+        <div class="staff-member">
+          <img src="divyaprasad.jpg" alt="Prof. Divya Prasad K H" />
+          <strong>Prof. Divya Prasad K H</strong><br />
+          Assistant Professor<br />
+          <a href="mailto:divyaprasad@gecbidukki.ac.in">divyaprasad@gecbidukki.ac.in</a>
+        </div>
+        <div class="staff-member">
+          <img src="ratheesh.jpg" alt="Prof. Ratheesh T K" />
+          <strong>Prof. Ratheesh T K</strong><br />
+          Assistant Professor<br />
+          <a href="mailto:ratheeshtk@gecidukki.ac.in">ratheeshtk@gecidukki.ac.in</a>
+        </div>
+        <div class="staff-member">
+          <img src="sreedivya.jpg" alt="Prof. Sreedivya R S" />
+          <strong>Prof. Sreedivya R S</strong><br />
+          Assistant Professor<br />
+          <a href="mailto:sreedivya.rs@gecidukki.ac.in">sreedivya.rs@gecidukki.ac.in</a>
+        </div>
+        <div class="staff-member">
+          <img src="rejin.jpg" alt="Prof. Rejin R" />
+          <strong>Prof. Rejin R</strong><br />
+          Assistant Professor<br />
+          <a href="mailto:rejin@gecidukki.ac.in">rejin@gecidukki.ac.in</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Infrastructure Content -->
+    <div class="tab-content" id="content5">
+      <h2>Infrastructure</h2>
+      <ul><strong>CLASSROOM</strong>
+        <div>
+          <img src="classroom.jpg" alt="Classroom" style="width:100%; max-width:400px; border-radius:8px; margin-top:8px;" />
+        </div>
+        <p>Interactive smart classrooms enhance learning experiences with digital podiums and projectors.</p>
+        <li>Smart classrooms with digital podiums</li>
+      </ul>
+      <ul><strong>LABS</strong>
+        <p>
+          Information Technology Department got Well Equipped Computer Labs with Latest Servers, Desktops and Laptops.
+          All the labs are networked with 100 mbps internet connectivity, WiFi connectivity is provided on request.
+          Core i5 based Laptops are provided to all PG Students.
+        </p>
+      </ul>
+      <ul><strong>Software Lab</strong>
+        <div>
+          <img src="softwarelab.png" alt="Software Lab" style="width:100%; max-width:400px; border-radius:8px; margin-top:8px;" />
+        </div>
+        <p>
+          In this lab students are trained with computer languages, databases, web developing tools, and academic projects.
+          32 students can do their work simultaneously on individual Computers. Lab is equipped with software like Turbo C++ Editor,
+          Python, Jdk1.8, oracle8i, Dreamweaver, Netbeans-ID, Network animator etc.
+        </p>
+        <li>High-speed internet connectivity</li>
+        <li>Latest software and development tools</li>
+      </ul>
+      <ul><strong>Hardware Lab</strong>
+        <div>
+          <img src="harwarelab.jpg" alt="Hardware Lab" style="width:100%; max-width:400px; border-radius:8px; margin-top:8px;" />
+        </div>
+        <p>
+          In this lab students do data structures lab, and computer hardware. 32 students can do their work simultaneously in individual Laptops.
+        </p>
+        <li>High-speed internet connectivity</li>
+        <li>Latest software and development tools</li>
+      </ul>
+      <ul><strong>Machine Learning Lab</strong>
+        <div>
+          <img src="mllab.jpg" alt="Machine Learning Lab" style="width:100%; max-width:400px; border-radius:8px; margin-top:8px;" />
+        </div>
+        <p>
+          In this lab students do Network programs and microprogramming. Lab Contains 32 systems with multimedia facilities and each System
+          contains software like Keil ide for 8051, Packet Tracer, etc. Lab also contains 28 nos 8085 microprocessor kits.
+        </p>
+        <li>High-speed internet connectivity</li>
+        <li>Latest software and development tools</li>
+      </ul>
+    </div>
+
+
+    <!-- Contact Content -->
+    <div class="tab-content" id="content6">
+      <h2>Contact</h2>
+      <p>
+        <strong>Department of Information Technology</strong><br />
+        Government Engineering College Idukki<br />
+        Painavu, Idukki, Kerala - 685603<br />
+        <strong>Email:</strong> info@gecidukki.ac.in<br />
+        <strong>Phone:</strong> 04862-233250 / 232477
+      </p>
+      
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3927.5!2d76.94222!3d9.84778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07c0fe10c19d1f%3A0x68fad2dcc7c55b6e!2sGovernment%20Engineering%20College%2C%20Idukki!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          width="100%" 
+          height="400" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+
+  <footer>
+    &copy; 2025 Department of Information Technology, GEC Idukki. All Rights Reserved.
+  </footer>
+</body>
+</html>
